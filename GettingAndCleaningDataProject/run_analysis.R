@@ -10,7 +10,7 @@ path <- getwd()
 
 ##Checking whether datafile "UCI HAR Dataset" already exists (this is assuming it has not been renamed)
 ##If it does not exist then download it and unzip it
-if(file.exists("UCI HAR Dataset")){
+if(!file.exists("UCI HAR Dataset")){
      ##Downloading file to projectData.zip
      link <- "https://d396qusza40orc.cloudfront.net/getdata%2Fprojectfiles%2FUCI%20HAR%20Dataset.zip"
      newFile <- "projectData.zip"
