@@ -24,7 +24,7 @@ LAYING, SITTING, STANDING, WALKING, WALKING_DOWNSTAIRS or WALKING_UPSTAIRS.
 
 
 ####Where Columns Were Obtained From
-The bullet point list below provides some details on where the columns came from. Where ***feature*** is mentioned, it is refering to the original names for the features found in the *features.txt* file. For more specific details on the steps taken to obtain the data from the original file see README.R. 
+The list below provides some details on where the columns came from. Where ***feature*** is mentioned, it is refering to the original names for the features found in the *features.txt* file. For more specific details on the steps taken to obtain the data from the original file see README.R. 
 
 **Subject** - These were found in the *subject_test.txt* and *subject_train.txt* files. The ID's were joined with the observation results to assocatie each subject to the rest of the related information of the study.
 
