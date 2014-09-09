@@ -27,6 +27,6 @@ This Readme contains a step by step breakdown of what is being done when tidying
 **8)** Finally, the data frame is reordered to make it make readable before then being melted again by each feature aspect. Doing this allows the mean (ad also the count) to be calculated for every possible combination of feature aspects. 
 The resulting dataframe, named 'finalTidyDataset' is the output and contains the finished tidy data set as required.
 
-[*in order to write this data frame to a .txt file use the command write.table(finalTidyDataset, "filenname").*]
+[*in order to write this data frame to a .txt file use the command write.table(finalTidyDataset, "filename").*]
 
 
