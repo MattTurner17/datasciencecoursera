@@ -26,8 +26,8 @@ newPath <- file.path(path, "UCI HAR Dataset") ##IF YOU HAVE RENAMED THE FILE THE
 testSubject <- fread(file.path(newPath, "test", "subject_test.txt"))
 trainSubject <- fread(file.path(newPath, "train", "subject_train.txt"))
 
-testLabels <- fread(file.path(newPath, "train", "Y_train.txt"))
-trainLabels  <- fread(file.path(newPath, "test" , "Y_test.txt" ))
+testLabels <- data.table(read.table(file.path(newPath,"test","y_test.txt")))
+trainLabels  <- data.table(read.table(file.path(newPath,"train","y_train.txt")))
 
 testDataset <- data.table(read.table(file.path(newPath,"test","X_test.txt")))
 trainDataset <- data.table(read.table(file.path(newPath,"train","X_train.txt")))
