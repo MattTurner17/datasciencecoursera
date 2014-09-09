@@ -2,7 +2,7 @@
 
 This Readme contains a step by step breakdown of what is being done when tidying the data in the UCI HAR Dataset. For information about what the parameters used represent then see the codebook.md file.
 
-#Steps taken:
+###Steps taken:
 
 1) After the relevant libraries and path to working directory have been found, there is a check to establish whether the UCI HAR Dataset exists. If it doesn't then the file is downloaded and unzipped.
 
