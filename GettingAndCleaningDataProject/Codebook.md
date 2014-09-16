@@ -12,10 +12,10 @@ Below is a list of the columns shown in the final tidy dataset with some short i
 | DomainSignal    | Type of domain signal                                 | Frequency, Time         |
 | RawSignal       | Type of 3-axial raw signal                            | Accelerometer, Gyroscope|
 | Acceleration    | Type of acceleration signal                           | Body, Gravity           |
-| Magnitude       | Was Euclidean norm used to calculate magnitude        | Magnitude, NA           |
+| Magnitude       | Was Euclidean norm used to calculate magnitude        | Magnitude, Not Mag.     |
 | Measure         | Calculation was used to make the measurement          | Mean, Std Dev           |
-| JerkSignal      | Was jerk signal obtained                              | Jerk, NA                |
-| Axis            | Which axis was used for the measurement               | X, Y, Z, NA             |
+| JerkSignal      | Was jerk signal obtained                              | Jerk, Not Jerk          |
+| Axis            | Which axis was used for the measurement               | X, Y, Z, No Axis        |
 | count           | Number of observations with related factor combination| integer value           |
 | average         | mean of observation values for each combination       | numeric value           |
 
@@ -51,15 +51,17 @@ The list below provides some details on where the columns came from. Where ***fe
 
 ####Example Output
 
-          Subject   ActivityName DomainSignal    RawSignal    Acceleration Magnitude Measure JerkSignal Axis count  average
-    1:       1          LAYING     Frequency    Accelerometer      Body        NA     Mean       NA     X    50  -0.9390991
-    2:       1          LAYING     Frequency    Accelerometer      Body        NA     Mean       NA     Y    50  -0.8670652
-    3:       1          LAYING     Frequency    Accelerometer      Body        NA     Mean       NA     Z    50  -0.8826669
-    4:       1          LAYING     Frequency    Accelerometer      Body        NA     Mean      Jerk    X    50  -0.9570739
-    5:       1          LAYING     Frequency    Accelerometer      Body        NA     Mean      Jerk    Y    50  -0.9224626
-    11876:  30    WALKING_UPSTAIRS    Time       Gyroscope         Body        NA     Std Dev   Jerk    Z    65  -0.6651506
-    11877:  30    WALKING_UPSTAIRS    Time       Gyroscope         Body   Magnitude   Mean       NA    NA    65  -0.1136084
-    11878:  30    WALKING_UPSTAIRS    Time       Gyroscope         Body   Magnitude   Mean      Jerk   NA    65  -0.7187803
-    11879:  30    WALKING_UPSTAIRS    Time       Gyroscope         Body   Magnitude   Std Dev    NA    NA    65  -0.1692935
-    11880:  30    WALKING_UPSTAIRS    Time       Gyroscope         Body   Magnitude   Std Dev   Jerk   NA    65  -0.7744391
+          Subject   ActivityName DomainSignal    RawSignal   Acceleration Magnitude Measure JerkSignal  Axis   count   average
+    1:       1          LAYING     Frequency    Accelerometer    Body     Not Mag.  Mean    Not Jerk     X      50   -0.9390991
+    2:       1          LAYING     Frequency    Accelerometer    Body     Not Mag.  Mean    Not Jerk     Y      50   -0.8670652
+    3:       1          LAYING     Frequency    Accelerometer    Body     Not Mag.  Mean    Not Jerk     Z      50   -0.8826669
+    4:       1          LAYING     Frequency    Accelerometer    Body     Not Mag.  Mean      Jerk       X      50   -0.9570739
+    5:       1          LAYING     Frequency    Accelerometer    Body     Not Mag.  Mean      Jerk       Y      50   -0.9224626
+    11876:  30    WALKING_UPSTAIRS    Time       Gyroscope       Body     Not Mag.  Std Dev   Jerk       Z      65   -0.6651506
+    11877:  30    WALKING_UPSTAIRS    Time       Gyroscope       Body   Magnitude   Mean    Not Jerk  No Axis   65   -0.1136084
+    11878:  30    WALKING_UPSTAIRS    Time       Gyroscope       Body   Magnitude   Mean      Jerk    No Axis   65   -0.7187803
+    11879:  30    WALKING_UPSTAIRS    Time       Gyroscope       Body   Magnitude   Std Dev Not Jerk  No Axis   65   -0.1692935
+    11880:  30    WALKING_UPSTAIRS    Time       Gyroscope       Body   Magnitude   Std Dev   Jerk    No Axis   65   -0.7744391
 
+
+**Note:** A key sign that data is not completely tidy is that lots of NA values exist. This solution results in zero NA values occuring.
