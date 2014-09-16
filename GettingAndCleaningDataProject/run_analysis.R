@@ -86,6 +86,7 @@ dataMelted$Measure[grepl("std()",dataMelted$Feature) == TRUE] <- "Std Dev"
 dataMelted$Axis[grepl("X$",dataMelted$Feature) == TRUE] <- "X"
 dataMelted$Axis[grepl("Y$",dataMelted$Feature) == TRUE] <- "Y"
 dataMelted$Axis[grepl("Z$",dataMelted$Feature) == TRUE] <- "Z"
+dataMelted$Axis[is.na(dataMelted$Axis)] <- "No Axis"
 
 ##Column showing instrument used
 dataMelted$RawSignal[grepl("Acc",dataMelted$Feature) == TRUE] <- "Accelerometer"
@@ -97,9 +98,11 @@ dataMelted$Acceleration[grepl("Gravity",dataMelted$Feature) == TRUE] <- "Gravity
 
 ##Column showing whether the Euclidean norm was used to get a magnitude
 dataMelted$Magnitude[grepl("Mag",dataMelted$Feature) == TRUE] <- "Magnitude"
+dataMelted$Magnitude[is.na(dataMelted$Magnitude)] <- "Not Mag."
 
 ##Column showing whether a Jerk signal was obtained
 dataMelted$JerkSignal[grepl("Jerk",dataMelted$Feature) == TRUE] <- "Jerk"
+dataMelted$JerkSignal[is.na(dataMelted$JerkSignal)] <- "Not Jerk"
 
 ##Removing now irrelevent info from Feature
 dataMelted$Feature <- sapply(strsplit(as.character(dataMelted$Feature),'-'), "[", 1)
