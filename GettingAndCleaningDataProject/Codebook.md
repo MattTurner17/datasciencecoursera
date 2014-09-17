@@ -3,7 +3,9 @@
 This codebook provides information about the specific parameters created as a result of running the run_analysis.R file.
 
 ####Resulting Columns
-Below is a list of the columns shown in the final tidy dataset with some short information provided to show what they represent. 
+Below is a list of the columns shown in the final tidy dataset with some short information provided to show what they represent.
+
+**Note: Separating out the feature into different columns is more than was required for the project! I could have kept the feature as it was originally, but doing this seemed tidier to me.**
 
 | Column Name     |                     Information                       |         Values          |
 | :-----------:   |:-----------------------------------------------------:|:-----------------------:|
