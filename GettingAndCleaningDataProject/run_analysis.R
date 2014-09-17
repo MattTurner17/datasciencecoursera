@@ -73,6 +73,8 @@ dataMelted <- melt(dataMeanStd, key(dataMeanStd), variable.name="Feature")
 dataMelted[,ActivityNumber:=NULL]
 
 ##Adding new columns that better describe the feature...
+##(THIS STEP IS MORE THAN IS REQUIRED FOR THE PROJECT, BUT IT SEEMED TIDIER TO DO IT THIS WAY)
+
 ##Column to show domain signal based on first letter of feature
 dataMelted$DomainSignal <- substring(dataMelted$Feature,1,1)
 dataMelted$DomainSignal[dataMelted$DomainSignal == "f"] <- "Frequency"
