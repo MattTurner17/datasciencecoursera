@@ -20,7 +20,8 @@ This Readme contains a step by step breakdown of what is being done when tidying
 
 **5)** The activity names found from the file activity_labels.txt are then merged in based on the activity number. Then the data frame is melted so that feature becomes a single column rather than having a separate column for each feature.
 
-**6)** Next, the feature names are used to create new columns that can categorise each aspect of the feature. These new columns are added to the existing data frame. 
+**6)** Next, the feature names are used to create new columns that can categorise each aspect of the feature. These new columns are added to the existing data frame.  
+**(This is more than is required for the project. I could have left the feature column as it was but to me it seems tidier to try and separate them out into individual columns.)**
 
 **7)** The aspects are then removed from the feature name, resulting in the feature column becoming redundant. To ensure this is the case there is a check to make sure that every feature element is empty before removing this column from the data frame.
 
