@@ -10,7 +10,7 @@ path <- getwd()
 
 ##Checking whether datafile "UCI HAR Dataset" already exists (this is assuming it has not been renamed)
 ##If it does not exist then download it and unzip it
-if(file.exists("UCI HAR Dataset")){
+if(!file.exists("UCI HAR Dataset")){
      ##Downloading file to projectData.zip
      link <- "https://d396qusza40orc.cloudfront.net/getdata%2Fprojectfiles%2FUCI%20HAR%20Dataset.zip"
      newFile <- "projectData.zip"
@@ -26,8 +26,8 @@ newPath <- file.path(path, "UCI HAR Dataset") ##IF YOU HAVE RENAMED THE FILE THE
 testSubject <- fread(file.path(newPath, "test", "subject_test.txt"))
 trainSubject <- fread(file.path(newPath, "train", "subject_train.txt"))
 
-testLabels <- fread(file.path(newPath, "train", "Y_train.txt"))
-trainLabels  <- fread(file.path(newPath, "test" , "Y_test.txt" ))
+testLabels <- data.table(read.table(file.path(newPath,"test","y_test.txt")))
+trainLabels  <- data.table(read.table(file.path(newPath,"train","y_train.txt")))
 
 testDataset <- data.table(read.table(file.path(newPath,"test","X_test.txt")))
 trainDataset <- data.table(read.table(file.path(newPath,"train","X_train.txt")))
@@ -73,6 +73,8 @@ dataMelted <- melt(dataMeanStd, key(dataMeanStd), variable.name="Feature")
 dataMelted[,ActivityNumber:=NULL]
 
 ##Adding new columns that better describe the feature...
+##(THIS STEP IS MORE THAN IS REQUIRED FOR THE PROJECT, BUT IT SEEMED TIDIER TO DO IT THIS WAY)
+
 ##Column to show domain signal based on first letter of feature
 dataMelted$DomainSignal <- substring(dataMelted$Feature,1,1)
 dataMelted$DomainSignal[dataMelted$DomainSignal == "f"] <- "Frequency"
@@ -86,6 +88,7 @@ dataMelted$Measure[grepl("std()",dataMelted$Feature) == TRUE] <- "Std Dev"
 dataMelted$Axis[grepl("X$",dataMelted$Feature) == TRUE] <- "X"
 dataMelted$Axis[grepl("Y$",dataMelted$Feature) == TRUE] <- "Y"
 dataMelted$Axis[grepl("Z$",dataMelted$Feature) == TRUE] <- "Z"
+dataMelted$Axis[is.na(dataMelted$Axis)] <- "No Axis"
 
 ##Column showing instrument used
 dataMelted$RawSignal[grepl("Acc",dataMelted$Feature) == TRUE] <- "Accelerometer"
@@ -97,9 +100,11 @@ dataMelted$Acceleration[grepl("Gravity",dataMelted$Feature) == TRUE] <- "Gravity
 
 ##Column showing whether the Euclidean norm was used to get a magnitude
 dataMelted$Magnitude[grepl("Mag",dataMelted$Feature) == TRUE] <- "Magnitude"
+dataMelted$Magnitude[is.na(dataMelted$Magnitude)] <- "Not Mag."
 
 ##Column showing whether a Jerk signal was obtained
 dataMelted$JerkSignal[grepl("Jerk",dataMelted$Feature) == TRUE] <- "Jerk"
+dataMelted$JerkSignal[is.na(dataMelted$JerkSignal)] <- "Not Jerk"
 
 ##Removing now irrelevent info from Feature
 dataMelted$Feature <- sapply(strsplit(as.character(dataMelted$Feature),'-'), "[", 1)
