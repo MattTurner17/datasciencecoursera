@@ -1,4 +1,5 @@
 library(data.table)
+library(sqldf)
 
 ##downloading data
 wd <- getwd()
@@ -10,27 +11,15 @@ download.file(link, file.path(wd, newFile))
 ##Unzip the file to the current directory
 unzip("PowerConsumption.zip", overwrite = T, unzip="internal")
 
-##read in the data
+##read in the data (filtering for the right dates)
 path <- "household_power_consumption.txt"
-Dataset <- data.table(fread(path, sep=";", colClasses="character"))
+Dataset <- data.table(read.csv.sql(path, sql="SELECT * FROM file WHERE DATE IN ('1/2/2007','2/2/2007')", sep=";", header=T))
 
-##filter the data by date
-filteredDataset <- Dataset[Dataset$Date %in% c("1/2/2007","2/2/2007")]
-
-##concatenate Date and Time into one DateTime column
-filteredDataset$DateTime <- paste(filteredDataset$Date,filteredDataset$Time)
-
-##change the class of each column to the correct ones
-filteredDataset$DateTime <- as.POSIXct(filteredDataset$DateTime, format="%d/%m/%Y %H:%M:%S")
-filteredDataset$Global_active_power <- as.numeric(filteredDataset$Global_active_power)
-filteredDataset$Global_reactive_power <- as.numeric(filteredDataset$Global_reactive_power)
-filteredDataset$Voltage <- as.numeric(filteredDataset$Voltage)
-filteredDataset$Global_intensity <- as.numeric(filteredDataset$Global_intensity)
-filteredDataset$Sub_metering_1 <- as.numeric(filteredDataset$Sub_metering_1)
-filteredDataset$Sub_metering_2 <- as.numeric(filteredDataset$Sub_metering_2)
-filteredDataset$Sub_metering_3 <- as.numeric(filteredDataset$Sub_metering_3)
+##concatenate Date and Time into one DateTime column and apply correct class
+Dataset$DateTime <- paste(Dataset$Date,Dataset$Time)
+Dataset$DateTime <- as.POSIXct(Dataset$DateTime, format="%d/%m/%Y %H:%M:%S")
 
 ##make plot
 png("plot1.png", width = 480, height = 480, units= "px")
-with(filteredDataset,hist(Global_active_power, col="red", main="Global Active Power", xlab="Global Active Power (kilowatts)"))
+with(Dataset,hist(Global_active_power, col="red", main="Global Active Power", xlab="Global Active Power (kilowatts)"))
 dev.off()
