@@ -31,7 +31,7 @@ filteredDataset$Sub_metering_2 <- as.numeric(filteredDataset$Sub_metering_2)
 filteredDataset$Sub_metering_3 <- as.numeric(filteredDataset$Sub_metering_3)
 
 ##make plot
-png("plot4.png")
+png("plot4.png", width = 480, height = 480, units= "px")
 par(mfcol=c(2,2), mar=c(4,4,1,2))
 with(filteredDataset,plot(DateTime, Global_active_power, type="l"
                           , ylab="Global Active Power", xlab=""))

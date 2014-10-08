@@ -31,7 +31,7 @@ filteredDataset$Sub_metering_2 <- as.numeric(filteredDataset$Sub_metering_2)
 filteredDataset$Sub_metering_3 <- as.numeric(filteredDataset$Sub_metering_3)
 
 ##make plot
-png("plot3.png")
+png("plot3.png", width = 480, height = 480, units= "px")
 with(filteredDataset, plot(DateTime, Sub_metering_1, type="l"
                            , ylab="Energy sub metering", xlab="", col="black"))
 with(filteredDataset, lines(DateTime, Sub_metering_2, col="red"))
